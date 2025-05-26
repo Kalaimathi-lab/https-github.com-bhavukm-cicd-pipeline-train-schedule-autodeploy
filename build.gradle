@@ -25,19 +25,19 @@ task zip(type: Zip) {
 }
 
 build.dependsOn zip
-zip.dependsOn npm_build
-npm_build.dependsOn npm_test
-npm_test.dependsOn npmInstall
+zip.dependsOn customNpmBuild
+customNpmBuild.dependsOn customNpmTest
+customNpmTest.dependsOn customNpmInstall
 
-task npmInstall(type: NpmTask) {
+task customNpmInstall(type: NpmTask) {
     args = ['install']
 }
 
-task npm_test(type: NpmTask) {
+task customNpmTest(type: NpmTask) {
     args = ['test']
 }
 
-task npm_build(type: NpmTask) {
+task customNpmBuild(type: NpmTask) {
     args = ['run', 'build']
 }
 

@@ -10,6 +10,18 @@ node {
 
 task build
 
+task customNpmInstall(type: NpmTask) {
+    args = ['install']
+}
+
+task customNpmTest(type: NpmTask) {
+    args = ['test']
+}
+
+task customNpmBuild(type: NpmTask) {
+    args = ['run', 'build']
+}
+
 task zip(type: Zip) {
     from('.') {
         include "*"
@@ -28,16 +40,4 @@ build.dependsOn zip
 zip.dependsOn customNpmBuild
 customNpmBuild.dependsOn customNpmTest
 customNpmTest.dependsOn customNpmInstall
-
-task customNpmInstall(type: NpmTask) {
-    args = ['install']
-}
-
-task customNpmTest(type: NpmTask) {
-    args = ['test']
-}
-
-task customNpmBuild(type: NpmTask) {
-    args = ['run', 'build']
-}
 
